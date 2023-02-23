@@ -1,15 +1,14 @@
 package main
 
 import (
-	appKafka "MS2/kafkaimp"
-	"fmt"
-	"time"
+	appKafka "MS2/kafka"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
-	go appKafka.StartKafka()
-
-	fmt.Println("Kafka has been started...")
-
-	time.Sleep(10 * time.Minute)
+	err := appKafka.StartKafka()
+	if err != nil {
+		log.Infoln("There is an error while reading data from kafka..", err)
+	}
 }
